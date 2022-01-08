@@ -11,5 +11,6 @@ function sayIt(name) {
 
 sayIt("Mark");
 
+module.exports = sayIt
 //functions are variable 
 //variables can be passed as parameter

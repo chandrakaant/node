@@ -18,3 +18,6 @@ fs.readFile('./Test/test.txt', 'utf8', (err, result)=>{
     }
     console.log(result)
 })
+
+
+

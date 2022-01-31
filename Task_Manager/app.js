@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const tasks = require('./routes/tasks')
 const connectDB = require('./db/connect')
+require('dotenv').config()
 
 var util= require('util');
 var encoder = new util.TextEncoder('utf-8');
@@ -24,7 +25,7 @@ const port = 3000;
 
 const start = async () => {
     try {
-        await connectDB()
+        await connectDB(process.env.MONGO_URI)
         app.listen(port, console.log(`Server started running on port ${port}`));
     } catch (error) {
         console.log(error)

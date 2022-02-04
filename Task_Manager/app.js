@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const tasks = require('./routes/tasks')
 const connectDB = require('./db/connect')
+const notFound = require('./middleware/not-found')
+const errorHandlerMiddleWare = require('./middleware/error-handler')
 require('dotenv').config()
 
 var util= require('util');
@@ -10,16 +12,14 @@ var encoder = new util.TextEncoder('utf-8');
 app.use(express.static('./public'))
 
 
+//routes
+app.use('/api/v1/tasks', tasks);
+
+
 //middleware
 app.use(express.json())
-
-
-//routes
-app.get('/hello', (req, res)=>{
-    res.send("Task Manager App");
-})
-
-app.use('/api/v1/tasks', tasks);
+app.use(notFound) 
+app.use(errorHandlerMiddleWare)
 
 const port = 3000;
 
